@@ -1,8 +1,9 @@
 
-import { Children, Fragment } from 'react'
-import { Disclosure, Menu, Transition } from '@headlessui/react'
-import { Bars3Icon, ShoppingCartIcon, XMarkIcon } from '@heroicons/react/24/outline'
-import { Link } from 'react-router-dom'
+import { Children, Fragment } from 'react';
+import { Disclosure, Menu, Transition } from '@headlessui/react';
+import { Bars3Icon, ShoppingCartIcon, XMarkIcon } from '@heroicons/react/24/outline';
+import { Link } from 'react-router-dom';
+import TopBar from '../../pages/TopBarTitle';
 
 const user = {
   name: 'Tom Cook',
@@ -11,9 +12,9 @@ const user = {
     'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
 }
 const navigation = [
-  { name: 'Home', href: '#', current: true },
-  { name: 'All Products', href: '#', current: false },
-  { name: 'Contact Us', href: '#', current: false },
+  { name: 'Home', href: '/', current: true },
+  { name: 'All Products', href: '/', current: false },
+  { name: 'Contact Us', href: '/contact', current: false },
 
 ]
 
@@ -33,6 +34,7 @@ function classNames(...classes) {
 function NavBar ({children}) {   // inserted children as prop
     return ( 
         <>
+        <TopBar/>
         <div className="min-h-full">
           <Disclosure as="nav" className="bg-gray-800">
             {({ open }) => (
@@ -41,11 +43,13 @@ function NavBar ({children}) {   // inserted children as prop
                   <div className="flex h-16 items-center justify-between">
                     <div className="flex items-center">
                       <div className="flex-shrink-0">
+                        <Link to="/">
                         <img
                           className="h-10 w-22"
                           src="https://www.shopland.com.pk/theme/images/logo.png"   //Brand Image
                           alt="Your Company"
                         />
+                        </Link>
                       </div>
                       <div className="hidden md:block">
                         <div className="ml-10 flex items-baseline space-x-4">
@@ -204,9 +208,10 @@ function NavBar ({children}) {   // inserted children as prop
             </div>
           </header>
           <main>
-            <div className="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">{children}</div>   {/*instead of your content i have passed children prop*/}
+            <div className="mx-auto max-w-8xl py-6 sm:px-6 lg:px-8">{children}</div>   {/*instead of your content i have passed children prop*/}
           </main>
         </div>
+      
       </>
      );
 }
