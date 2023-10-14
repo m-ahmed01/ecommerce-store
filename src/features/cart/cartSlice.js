@@ -43,7 +43,10 @@ export const counterSlice = createSlice({
 export const { increment } = counterSlice.actions;
 
 
-export const selectCount = (state) => state.counter.value;
+// export const selectCount = (state) => state.counter.value;
+
+// Modified selector with optional chaining
+export const selectCount = (state) => state.counter?.value ?? 0;
 
 
 export default counterSlice.reducer;

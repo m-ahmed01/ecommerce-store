@@ -8,11 +8,14 @@ import {
 
   selectCount,
 } from '../authSlice';
+
+import { selectAuth } from '../authSlice';
 import { Link } from 'react-router-dom';
 
 
 export default function Signup() {
-  const count = useSelector(selectCount);
+  // const count = useSelector(selectCount);  
+  const count = useSelector(selectAuth);
   const dispatch = useDispatch();
 
   return (

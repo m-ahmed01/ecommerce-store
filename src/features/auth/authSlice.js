@@ -6,6 +6,8 @@ const initialState = {
   status: 'idle',
 };
 
+export const selectAuth = (state) => state.counter; // Assuming counter is your authentication slice
+
 
 export const incrementAsync = createAsyncThunk(
   'counter/fetchCount',
@@ -16,7 +18,18 @@ export const incrementAsync = createAsyncThunk(
   }
 );
 
-export const counterSlice = createSlice({
+// export const counterSlice = createSlice({
+//   name: 'counter',
+//   initialState,
+
+//   reducers: {
+//     increment: (state) => {
+
+//       state.value += 1;
+//     },
+
+//   },
+export const authSlice = createSlice({
   name: 'counter',
   initialState,
 
@@ -40,10 +53,12 @@ export const counterSlice = createSlice({
   },
 });
 
-export const { increment } = counterSlice.actions;
+// export const { increment } = counterSlice.actions;
+export const { increment } = authSlice.actions;
 
 
 export const selectCount = (state) => state.counter.value;
 
 
-export default counterSlice.reducer;
+// export default counterSlice.reducer;
+export default authSlice.reducer;
