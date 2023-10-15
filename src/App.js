@@ -18,6 +18,7 @@ import CartPage from './pages/CartPage';
 import Checkout from './pages/Checkout';
 import ProductDetailPage from './pages/ProductDetailPage';
 import TopBar from './pages/TopBarTitle';
+import NavBar from './features/navbar/Navbar';
 
 const router = createBrowserRouter([
   {
@@ -38,7 +39,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/checkout",
-    element: <Checkout></Checkout>,
+    element: <NavBar> <Checkout></Checkout> </NavBar>,
   },
   {
     path: "/product-detail",

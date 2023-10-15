@@ -49,7 +49,7 @@ export default function Cart() {
 
   return (
     <>
-          <div className="mx-auto mt-16 bg-white max-w-7xl px-4 py-5 sm:px-6 lg:px-8">
+          <div className="mx-auto mt-8 bg-white max-w-7xl px-4 py-3 sm:px-6 lg:px-8">
 
                           <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
                           <h1 className="text-4xl my-5 font-bold tracking-tight mb-5 text-gray-900">Cart</h1>

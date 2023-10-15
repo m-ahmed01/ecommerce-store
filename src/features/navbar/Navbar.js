@@ -34,7 +34,7 @@ function classNames(...classes) {
 function NavBar ({children}) {   // inserted children as prop
     return ( 
         <>
-        <TopBar/>
+        {/* <TopBar/> */}
         <div className="min-h-full">
           <Disclosure as="nav" className="bg-gray-800">
             {({ open }) => (
@@ -202,11 +202,11 @@ function NavBar ({children}) {   // inserted children as prop
             )}
           </Disclosure>
   
-          <header className="bg-white shadow">
-            <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+          {/* <header className="bg-white shadow">
+            <div className="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
               <h1 className="text-3xl font-bold tracking-tight text-gray-900">E-Commerce</h1>
             </div>
-          </header>
+          </header> */}
           <main>
             <div className="mx-auto max-w-8xl py-6 sm:px-6 lg:px-8">{children}</div>   {/*instead of your content i have passed children prop*/}
           </main>
