@@ -1,24 +1,35 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import {
-  increment,
-  incrementAsync,
-  selectCount,
+import { useForm, SubmitHandler } from "react-hook-form";
+// import {
+//   increment,
+//   incrementAsync,
+//   selectCount,
   
-} from '../authSlice';
-import { selectAuth } from '../authSlice';  // new
-import { Link } from 'react-router-dom';
+// } from '../authSlice';
+import { checkUserAsync, selectAuth, selectError, selectLoggedInUser } from '../authSlice';  // new
+import { Link, Navigate } from 'react-router-dom';
 
 
 
 export default function Login() {
   // const count = useSelector(selectCount);
+  const user = useSelector(selectLoggedInUser)
   const count = useSelector(selectAuth);
+
   const dispatch = useDispatch();
+  const error = useSelector(selectError);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+ console.log(errors); 
 
   return (
     <>
-
+{user && <Navigate to='/' replace = {true}> </Navigate>}
     <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
         <img
@@ -32,20 +43,36 @@ export default function Login() {
       </div>
 
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        <form className="space-y-6" action="#" method="POST">
+        {/* <form noValidate  onSubmit={handleSubmit((data)=>{  // noValidate is the HTML's validator
+          dispatch();
+            checkUserAsync({name: data.name,email: data.email, password: data.password})
+          console.log(data);
+        })}
+        className="space-y-6"
+        > */}
+
+<form
+  noValidate
+  onSubmit={handleSubmit((data) => {
+    dispatch(checkUserAsync({ name: data.name, email: data.email, password: data.password }));
+    console.log(data);
+  })}
+  className="space-y-6"
+>
+
           <div>
             <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
               Email address
             </label>
             <div className="mt-2">
-              <input
+            <input
                 id="email"
-                name="email"
+              {...register("email", { required: "Email is required", pattern: {value: /\b[\w\.-]+@[\w\.-]+\.\w{2,4}\b/gi, message:"Enter a Valid Email" } })}
                 type="email"
-                autoComplete="email"
-                required
+
                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
+                     {errors.email && <p className='text-red-600'>{errors.email.message}</p> }
             </div>
           </div>
 
@@ -61,15 +88,18 @@ export default function Login() {
               </div>
             </div>
             <div className="mt-2">
-              <input
+            <input
                 id="password"
-                name="password"
+                {...register("password", { required: "Password is required", pattern:{value: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm, message: `- at least 8 characters\n
+                - must contain at least 1 uppercase letter, 1 lowercase letter, and 1 number\n
+                - Can contain special characters` } })}
                 type="password"
-                autoComplete="current-password"
-                required
+                
                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
+                       {errors.password && <p className='text-red-600'>{errors.password.message}</p> }
             </div>
+            {error && <p className='text-red-600'>{error.message}</p> }   
           </div>
 
           <div>
@@ -77,7 +107,7 @@ export default function Login() {
               type="submit"
               className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
-              Login in
+              Log In
             </button>
           </div>
         </form>

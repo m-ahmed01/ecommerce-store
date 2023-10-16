@@ -1840,8 +1840,7 @@
       ]
     }
   ],
-
-  "categories":[
+  "categories": [
     {
       "value": "smartphones",
       "label": "smartphones",
@@ -1943,8 +1942,7 @@
       "checked": false
     }
   ],
-
-  "brands":[
+  "brands": [
     {
       "value": "Apple",
       "label": "Apple",
@@ -2335,6 +2333,19 @@
       "label": "YIOSI",
       "checked": false
     }
+  ],
+  "users": [
+    {
+      "name": "Muhammad Ahmed",
+      "email": "ahmed@gmail.com",
+      "password": "Ahmed@2002",
+      "id": 1
+    },
+    {
+      "name": "Muhammad Ahmed",
+      "email": "demo@gmail.com",
+      "password": "Demo@123",
+      "id": 2
+    }
   ]
 }
-

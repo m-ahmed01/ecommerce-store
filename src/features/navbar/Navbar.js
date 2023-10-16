@@ -16,14 +16,17 @@ const navigation = [
   { name: 'All Products', href: '/', current: false },
   { name: 'Contact Us', href: '/contact', current: false },
 
+
 ]
 
 
 
 const userNavigation = [
-  { name: 'Your Profile', href: '#' },
-  { name: 'Settings', href: '#' },
-  { name: 'Sign out', href: '#' },
+  { name: 'Settings', link: '/' },
+  { name: 'Sign in', link: '/login'},
+  { name: 'Your Profile', link: '#' },
+  { name: 'Sign out', link: '/login', disabled : "true"},
+  // { name: 'Sign out', href: '#', disabled : "true"},
 ]
 
 function classNames(...classes) {
@@ -110,15 +113,26 @@ function NavBar ({children}) {   // inserted children as prop
                               {userNavigation.map((item) => (
                                 <Menu.Item key={item.name}>
                                   {({ active }) => (
-                                    <a
-                                      href={item.href}
-                                      className={classNames(
-                                        active ? 'bg-gray-100' : '',
-                                        'block px-4 py-2 text-sm text-gray-700'
-                                      )}
-                                    >
-                                      {item.name}
-                                    </a>
+                                    // <a
+                                    //   href={item.href}
+                                    //   className={classNames(
+                                    //     active ? 'bg-gray-100' : '',
+                                    //     'block px-4 py-2 text-sm text-gray-700 ' 
+                                    //      item.disabled ? 'text-gray-400 cursor-not-allowed' : 'text-gray-700'
+                                    //   )}
+                                    // >
+                                    //   {item.name}
+                                    // </a>
+                                    <Link
+                                    to={item.link}
+                                    className={classNames(
+                                      active ? 'bg-gray-100' : '',
+                                      'block px-4 py-2 text-sm',
+                                      item.disabled ? 'text-gray-400 cursor-not-allowed' : 'text-gray-700'
+                                    )}
+                                  >
+                                    {item.name}
+                                  </Link>
                                   )}
                                 </Menu.Item>
                               ))}
@@ -183,6 +197,8 @@ function NavBar ({children}) {   // inserted children as prop
                       <span className="inline-flex items-center rounded-md bg-red-50 mb-9 -ml-3 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10">
         3
       </span>
+
+      
                     </div>
                     <div className="mt-3 space-y-1 px-2">
                       {userNavigation.map((item) => (
