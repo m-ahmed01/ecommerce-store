@@ -14,7 +14,7 @@ import { Link, Navigate } from 'react-router-dom';
 
 export default function Login() {
   // const count = useSelector(selectCount);
-  const user = useSelector(selectLoggedInUser)
+  const user = useSelector(selectLoggedInUser);
   const count = useSelector(selectAuth);
 
   const dispatch = useDispatch();
