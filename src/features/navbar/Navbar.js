@@ -24,10 +24,11 @@ const navigation = [
 
 
 const userNavigation = [
-  { name: 'Settings', link: '/' },
-  { name: 'Sign in', link: '/login'},
-  { name: 'Your Profile', link: '#' },
-  { name: 'Sign out', link: '/login', disabled : "true"},
+  { name: 'My Orders', link: '/orders' },
+  { name: 'Sign in', link: '/login'},  // if signedIn disable it
+  { name: 'My Profile', link: '/profile' },
+  { name: 'Sign out', link: '/login'},
+  // { name: 'Sign out', link: '/login', disabled : "true"},
   // { name: 'Sign out', href: '#', disabled : "true"},
 ]
 

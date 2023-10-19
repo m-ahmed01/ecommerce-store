@@ -50,7 +50,11 @@ export default function ProductDetail() {
   
 const handleCart = (e)=>{
   e.preventDefault();
-  dispatch(addToCartAsync({...product, quantity:1, user:user.id, }));
+                                        // works but add same item for couple of times
+  // const newItem = {...product, quantity:1, user:user.id, };
+  // delete newItem['id'];
+  // dispatch(addToCartAsync(newItem));
+  dispatch(addToCartAsync({...product, quantity:1, user:user.id }));
 }
 
   // fetching product
@@ -138,7 +142,11 @@ const handleCart = (e)=>{
           {/* Options */}
           <div className="mt-4 lg:row-span-3 lg:mt-0">
             <h2 className="sr-only">Product information</h2>
-            <p className="text-3xl tracking-tight text-gray-900">${product.price}</p>
+            <p className="text-3xl tracking-tight text-gray-900">${Math.round(
+                    product.price *
+                      (1 - product.discountPercentage / 100)
+                  )}</p>
+            {/* <p className="text-3xl tracking-tight text-gray-900">${product.price}</p> */}  {/* Giving actual price */}
 
             {/* Reviews */}
             <div className="mt-6">

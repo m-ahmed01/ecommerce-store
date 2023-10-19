@@ -10,7 +10,7 @@ import {
 import { Fragment } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 
 // const items = [
 //   {
@@ -63,6 +63,8 @@ export default function Cart() {
 
   return (
     <>
+          {!items.length && <Navigate to='/' replace={true}></Navigate>}
+          <div>
           <div className="mx-auto mt-8 bg-white max-w-7xl px-4 py-3 sm:px-6 lg:px-8">
 
                           <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
@@ -132,7 +134,7 @@ export default function Cart() {
 
                     <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
                       <div className="flex justify-between my-2 mx-2 text-base font-medium text-gray-900">
-                        <p>Subtotal</p>
+                        <p>SubTotal</p>
                         <p>$ {totalAmount}</p>
                       </div>
                       <div className="flex my-2 mx-2 mb-1 justify-between text-base font-medium text-gray-900">
@@ -161,6 +163,7 @@ Checkout
                           </Link>
                         </div>
                       </div>
+                    </div>
                     </div>
                     </div>
     </>
