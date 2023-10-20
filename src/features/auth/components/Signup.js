@@ -52,7 +52,7 @@ export default function Signup() {
 
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
         <form noValidate className="space-y-6" onSubmit={handleSubmit((data)=>{  // noValidate is the HTML's validator
-          dispatch(createUserAsync({name: data.name,email: data.email, password: data.password, addresses:[]}))
+          dispatch(createUserAsync({name: data.name,email: data.email, password: data.password, addresses:[],role:'user'})) // role to be directly give on backend
           console.log(data)
           reset();  // reset the form
         })}>
@@ -96,9 +96,9 @@ export default function Signup() {
                 Password
               </label>
               <div className="text-sm">
-                <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">
+              {/* <Link to="/forgot-password" className="font-semibold text-indigo-600 hover:text-indigo-500">
                   Forgot password?
-                </a>
+                </Link> */}
               </div>
             </div>
             <div className="mt-2">

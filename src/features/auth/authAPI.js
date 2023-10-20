@@ -16,7 +16,7 @@ export function createUser(userData) {
     const response = await fetch(`http://localhost:8080/users`,{
       method: 'POST',
       body: JSON.stringify(userData),
-      headers:{'content-type':'application/json'}
+      headers:{'content-type':'application/json'},
     });
     const data = await response.json();
     // ToDo: On server it will return some information (not passsword)
@@ -63,3 +63,12 @@ export function checkUser(loginInfo) {
 //   }
 //   );
 // }
+
+export function signOut(userId) { 
+  return new Promise(async(resolve) => { // here we used promise
+ 
+    // ToDo: On server we remove session info
+    resolve({data:"success"});
+  }
+  );
+}

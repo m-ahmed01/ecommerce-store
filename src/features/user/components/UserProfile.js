@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form';
 
 
 export default function UserProfile() {
-
+// TODO: We will add payment section in backend
   const dispatch = useDispatch();
   const user = useSelector(selectUserInfo);
   const {
@@ -37,13 +37,13 @@ const [showAddAddressForm, setShowAddAddressForm] = useState(false);
 const handleEditForm = (index)=>{
   setSelectedEditIndex(index);
   const address = user.addresses[index];
-  setValue('name',address.name)
-  setValue('email',address.email)
-  setValue('phone',address.phone)
-  setValue('street',address.street)
-  setValue('city',address.city)
-  setValue('state',address.state)
-  setValue('pinCode',address.pinCode)
+  setValue('name',address.name);
+  setValue('email',address.email);
+  setValue('phone',address.phone);
+  setValue('street',address.street);
+  setValue('city',address.city);
+  setValue('state',address.state);
+  setValue('pinCode',address.pinCode);
 }
 
 const handleAdd = (address) =>{
@@ -64,6 +64,9 @@ const handleAdd = (address) =>{
                           <h3 className="text-xl font-bold tracking-tight  text-red-700">
     Email: {user.email}
 </h3>
+                          {user.role === 'admin' && <h3 className="text-xl font-bold tracking-tight  text-green-500">
+    Role: {user.role}
+</h3>}
                       </div>
                     <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
                   
@@ -90,14 +93,16 @@ const handleAdd = (address) =>{
 
             <div className="space-y-12">
             <div className="border-b border-gray-900/10 pb-12">
-          <h1 className="text-3xl mt-3 tracking-tight font-bold leading-7 text-gray-950">Personal Information</h1>
+          <h1 className="text-3xl tracking-tight font-bold leading-3 text-gray-950">
+            Personal Information 
+            </h1>
        
           <p className="mt-2 text-sm leading-6 text-gray-600">Use a permanent address where you can receive your Order.</p>
 
           <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
             <div className="sm:col-span-4">
               <label htmlFor="name" className="block text-sm font-medium leading-6 text-gray-900">
-                Full Name
+                Full Name <span style={{ color: 'red' }}>*</span>
               </label>
               <div className="mt-2">
                 <input
@@ -114,7 +119,7 @@ const handleAdd = (address) =>{
 
             <div className="sm:col-span-3">
               <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
-                Email address
+                Email address <span style={{ color: 'red' }}>*</span>
               </label>
               <div className="mt-2">
                 <input
@@ -129,7 +134,7 @@ const handleAdd = (address) =>{
 
             <div className="sm:col-span-3">
               <label htmlFor="phone" className="block text-sm font-medium leading-6 text-gray-900">
-                Phone Number
+                Phone Number <span style={{ color: 'red' }}>*</span>
               </label>
               <div className="mt-2">
               <input
@@ -158,7 +163,7 @@ const handleAdd = (address) =>{
 
             <div className="col-span-full">
               <label htmlFor="street-address" className="block text-sm font-medium leading-6 text-gray-900">
-                Postal Address    {/*Street Address*/}
+                Postal Address  <span style={{ color: 'red' }}>*</span>   {/*Street Address*/}
               </label>
               <div className="mt-2">
                 <input
@@ -174,7 +179,7 @@ const handleAdd = (address) =>{
 
             <div className="sm:col-span-2 sm:col-start-1">
               <label htmlFor="city" className="block text-sm font-medium leading-6 text-gray-900">
-                City
+                City <span style={{ color: 'red' }}>*</span>
               </label>
               <div className="mt-2">
                 <input
@@ -190,7 +195,7 @@ const handleAdd = (address) =>{
 
             <div className="sm:col-span-2">
               <label htmlFor="state" className="block text-sm font-medium leading-6 text-gray-900">
-                State / Province
+                State / Province <span style={{ color: 'red' }}>*</span>
               </label>
               <div className="mt-2">
                 <input
@@ -206,7 +211,7 @@ const handleAdd = (address) =>{
 
             <div className="sm:col-span-2">
               <label htmlFor="pinCode" className="block text-sm font-medium leading-6 text-gray-900">
-                ZIP / Postal code
+                ZIP / Postal code <span style={{ color: 'red' }}>*</span>
               </label>
               <div className="mt-2">
                 <input
@@ -256,7 +261,7 @@ const handleAdd = (address) =>{
     // console.log(data);
   })}>
             <div className="space-y-12">
-            <div className="border-b border-gray-900/10 pb-12">
+            <div className="border-b border-gray-900/10 pb-9">
           <h1 className="text-3xl mt-3 tracking-tight font-bold leading-7 text-gray-950">Personal Information</h1>
        
           <p className="mt-2 text-sm leading-6 text-gray-600">Use a permanent address where you can receive your Order.</p>

@@ -8,7 +8,7 @@
 //   );
 // }
 
-
+/*old
 export function addToCart(item) { 
   return new Promise(async(resolve) => { // here we used promise
     const response = await fetch(`http://localhost:8080/cart`,{
@@ -21,7 +21,28 @@ export function addToCart(item) {
     resolve({data});
   }
   );
+}*/
+export function addToCart(item) { 
+  return new Promise(async(resolve, reject) => {
+    try {
+      const response = await fetch(`http://localhost:8080/cart`,{
+        method: 'POST',
+        body: JSON.stringify(item),
+        headers:{'content-type':'application/json'}
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      resolve({data});
+    } catch (error) {
+      reject(error);
+    }
+  });
 }
+
 
 export function fetchItemsByUserId(userId) { 
   return new Promise(async(resolve) => { // here we used promise

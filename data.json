@@ -4,10 +4,10 @@
       "id": 1,
       "title": "iPhone 9",
       "description": "An apple mobile which is nothing like apple",
-      "price": 549,
-      "discountPercentage": 12.96,
-      "rating": 4.69,
-      "stock": 94,
+      "price": 570,
+      "discountPercentage": 10,
+      "rating": 3.74,
+      "stock": 90,
       "brand": "Apple",
       "category": "smartphones",
       "thumbnail": "https://i.dummyjson.com/data/products/1/thumbnail.jpg",
@@ -15,17 +15,17 @@
         "https://i.dummyjson.com/data/products/1/1.jpg",
         "https://i.dummyjson.com/data/products/1/2.jpg",
         "https://i.dummyjson.com/data/products/1/3.jpg",
-        "https://i.dummyjson.com/data/products/1/4.jpg",
         "https://i.dummyjson.com/data/products/1/thumbnail.jpg"
-      ]
+      ],
+      "deleted": true
     },
     {
       "id": 2,
       "title": "iPhone X",
       "description": "SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...",
-      "price": 899,
+      "price": 900,
       "discountPercentage": 17.94,
-      "rating": 4.44,
+      "rating": 2,
       "stock": 34,
       "brand": "Apple",
       "category": "smartphones",
@@ -1822,22 +1822,76 @@
       ]
     },
     {
-      "id": 100,
-      "title": "Crystal chandelier maria theresa for 12 light",
-      "description": "Crystal chandelier maria theresa for 12 light",
-      "price": 47,
-      "discountPercentage": 16,
-      "rating": 4.74,
-      "stock": 133,
-      "brand": "YIOSI",
-      "category": "lighting",
+      "title": "Test Mac Book",
+      "description": "Its a test laptop",
+      "brand": "Apple",
+      "category": "laptops",
+      "price": "1000",
+      "discountPercentage": "21",
+      "stock": "56",
       "thumbnail": "https://i.dummyjson.com/data/products/100/thumbnail.jpg",
       "images": [
         "https://i.dummyjson.com/data/products/100/1.jpg",
         "https://i.dummyjson.com/data/products/100/2.jpg",
         "https://i.dummyjson.com/data/products/100/3.jpg",
         "https://i.dummyjson.com/data/products/100/thumbnail.jpg"
-      ]
+      ],
+      "rating": 3.75,
+      "id": 100
+    },
+    {
+      "title": "iPhone 9",
+      "description": "An apple mobile which is nothing like apple",
+      "brand": "Apple",
+      "category": "smartphones",
+      "price": 549,
+      "discountPercentage": 12,
+      "stock": 94,
+      "thumbnail": "https://i.dummyjson.com/data/products/1/1.jpg",
+      "rating": 0,
+      "images": [
+        "https://i.dummyjson.com/data/products/1/2.jpg",
+        "https://i.dummyjson.com/data/products/1/3.jpg",
+        "https://i.dummyjson.com/data/products/1/4.jpg",
+        "https://i.dummyjson.com/data/products/1/1.jpg"
+      ],
+      "id": 101
+    },
+    {
+      "title": "iPhone 9a",
+      "description": "An apple mobile which is nothing like apple",
+      "brand": "Apple",
+      "category": "smartphones",
+      "price": 549,
+      "discountPercentage": 12.96,
+      "stock": 94,
+      "thumbnail": "https://i.dummyjson.com/data/products/1/thumbnail.jpg",
+      "rating": 0,
+      "images": [
+        "https://i.dummyjson.com/data/products/1/1.jpg",
+        "https://i.dummyjson.com/data/products/1/2.jpg",
+        "https://i.dummyjson.com/data/products/1/3.jpg",
+        "https://i.dummyjson.com/data/products/1/thumbnail.jpg"
+      ],
+      "id": 102
+    },
+    {
+      "title": "iPhone 9a",
+      "description": "An apple mobile which is nothing like apple",
+      "brand": "Apple",
+      "category": "smartphones",
+      "price": 549,
+      "discountPercentage": 12.96,
+      "stock": 94,
+      "thumbnail": "https://i.dummyjson.com/data/products/1/thumbnail.jpg",
+      "rating": 0,
+      "images": [
+        "https://i.dummyjson.com/data/products/1/1.jpg",
+        "https://i.dummyjson.com/data/products/1/2.jpg",
+        "https://i.dummyjson.com/data/products/1/3.jpg",
+        "https://i.dummyjson.com/data/products/1/thumbnail.jpg"
+      ],
+      "id": 103
     }
   ],
   "categories": [
@@ -2339,6 +2393,7 @@
       "name": "Muhammad Ahmed",
       "email": "ahmed@gmail.com",
       "password": "Ahmed@2002",
+      "role": "user",
       "addresses": [
         {
           "name": "Muhammad Ahmed Ahsan",
@@ -2365,6 +2420,7 @@
       "name": "Muhammad Ahmed",
       "email": "demo@gmail.com",
       "password": "Demo@123",
+      "role": "user",
       "addresses": [
         {
           "name": "Muhammad Ahmed",
@@ -2377,6 +2433,14 @@
         }
       ],
       "id": 2
+    },
+    {
+      "name": "Admin",
+      "email": "admin@gmail.com",
+      "password": "Admin@123",
+      "addresses": [],
+      "role": "admin",
+      "id": 3
     }
   ],
   "cart": [],
@@ -2715,6 +2779,137 @@
       },
       "status": "pending",
       "id": 4
+    },
+    {
+      "items": [
+        {
+          "id": 1,
+          "title": "iPhone 9",
+          "description": "An apple mobile which is nothing like apple",
+          "price": 549,
+          "discountPercentage": 12.96,
+          "rating": 4.69,
+          "stock": 94,
+          "brand": "Apple",
+          "category": "smartphones",
+          "thumbnail": "https://i.dummyjson.com/data/products/1/thumbnail.jpg",
+          "images": [
+            "https://i.dummyjson.com/data/products/1/1.jpg",
+            "https://i.dummyjson.com/data/products/1/2.jpg",
+            "https://i.dummyjson.com/data/products/1/3.jpg",
+            "https://i.dummyjson.com/data/products/1/4.jpg",
+            "https://i.dummyjson.com/data/products/1/thumbnail.jpg"
+          ],
+          "quantity": 1,
+          "user": 1
+        }
+      ],
+      "totalAmount": 478,
+      "totalItems": 1,
+      "user": {
+        "name": "Muhammad Ahmed",
+        "email": "ahmed@gmail.com",
+        "password": "Ahmed@2002",
+        "role": "user",
+        "addresses": [
+          {
+            "name": "Muhammad Ahmed Ahsan",
+            "email": "ahmed1@gmail.com",
+            "phone": "03219955623",
+            "street": "2301block",
+            "city": "Lahore",
+            "state": "Punjab",
+            "pinCode": "547001"
+          },
+          {
+            "name": "Muhammad Ahsan",
+            "email": "test1@gmail.com",
+            "phone": "03217867671",
+            "street": "21 C1 block",
+            "city": "Lahore",
+            "state": "Punjab",
+            "pinCode": "547001"
+          }
+        ],
+        "id": 1
+      },
+      "paymentMethod": "cash",
+      "selectedAddress": {
+        "name": "Muhammad Ahsan",
+        "email": "test1@gmail.com",
+        "phone": "03217867671",
+        "street": "21 C1 block",
+        "city": "Lahore",
+        "state": "Punjab",
+        "pinCode": "547001"
+      },
+      "status": "pending",
+      "id": 5
+    },
+    {
+      "items": [
+        {
+          "title": "Test Mac Book",
+          "description": "Its a test laptop",
+          "brand": "Apple",
+          "category": "laptops",
+          "price": "1000",
+          "discountPercentage": "21",
+          "stock": "56",
+          "thumbnail": "https://i.dummyjson.com/data/products/100/thumbnail.jpg",
+          "images": [
+            "https://i.dummyjson.com/data/products/100/1.jpg",
+            "https://i.dummyjson.com/data/products/100/2.jpg",
+            "https://i.dummyjson.com/data/products/100/3.jpg",
+            "https://i.dummyjson.com/data/products/100/thumbnail.jpg"
+          ],
+          "rating": 3.75,
+          "id": 100,
+          "quantity": 1,
+          "user": 1
+        }
+      ],
+      "totalAmount": 790,
+      "totalItems": 1,
+      "user": {
+        "name": "Muhammad Ahmed",
+        "email": "ahmed@gmail.com",
+        "password": "Ahmed@2002",
+        "role": "user",
+        "addresses": [
+          {
+            "name": "Muhammad Ahmed Ahsan",
+            "email": "ahmed1@gmail.com",
+            "phone": "03219955623",
+            "street": "2301block",
+            "city": "Lahore",
+            "state": "Punjab",
+            "pinCode": "547001"
+          },
+          {
+            "name": "Muhammad Ahsan",
+            "email": "test1@gmail.com",
+            "phone": "03217867671",
+            "street": "21 C1 block",
+            "city": "Lahore",
+            "state": "Punjab",
+            "pinCode": "547001"
+          }
+        ],
+        "id": 1
+      },
+      "paymentMethod": "cash",
+      "selectedAddress": {
+        "name": "Muhammad Ahsan",
+        "email": "test1@gmail.com",
+        "phone": "03217867671",
+        "street": "21 C1 block",
+        "city": "Lahore",
+        "state": "Punjab",
+        "pinCode": "547001"
+      },
+      "status": "pending",
+      "id": 6
     }
   ]
 }

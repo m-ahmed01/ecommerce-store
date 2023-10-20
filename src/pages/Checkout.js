@@ -115,7 +115,7 @@ function Checkout () {
           <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
             <div className="sm:col-span-4">
               <label htmlFor="name" className="block text-sm font-medium leading-6 text-gray-900">
-                Full Name
+                Full Name <span style={{ color: 'red' }}>*</span>
               </label>
               <div className="mt-2">
                 <input
@@ -132,7 +132,7 @@ function Checkout () {
 
             <div className="sm:col-span-3">
               <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
-                Email address
+                Email address <span style={{ color: 'red' }}>*</span>
               </label>
               <div className="mt-2">
                 <input
@@ -147,7 +147,7 @@ function Checkout () {
 
             <div className="sm:col-span-3">
               <label htmlFor="phone" className="block text-sm font-medium leading-6 text-gray-900">
-                Phone Number
+                Phone Number <span style={{ color: 'red' }}>*</span>
               </label>
               <div className="mt-2">
               <input
@@ -175,7 +175,7 @@ function Checkout () {
 
             <div className="col-span-full">
               <label htmlFor="street-address" className="block text-sm font-medium leading-6 text-gray-900">
-                Postal Address    {/*Street Address*/}
+                Postal Address  <span style={{ color: 'red' }}>*</span>   {/*Street Address*/}
               </label>
               <div className="mt-2">
                 <input
@@ -190,7 +190,7 @@ function Checkout () {
 
             <div className="sm:col-span-2 sm:col-start-1">
               <label htmlFor="city" className="block text-sm font-medium leading-6 text-gray-900">
-                City
+                City <span style={{ color: 'red' }}>*</span>
               </label>
               <div className="mt-2">
                 <input
@@ -205,7 +205,7 @@ function Checkout () {
 
             <div className="sm:col-span-2">
               <label htmlFor="state" className="block text-sm font-medium leading-6 text-gray-900">
-                State / Province
+                State / Province <span style={{ color: 'red' }}>*</span>
               </label>
               <div className="mt-2">
                 <input
@@ -220,7 +220,7 @@ function Checkout () {
 
             <div className="sm:col-span-2">
               <label htmlFor="pinCode" className="block text-sm font-medium leading-6 text-gray-900">
-                ZIP / Postal code
+                ZIP / Postal code <span style={{ color: 'red' }}>*</span>
               </label>
               <div className="mt-2">
                 <input

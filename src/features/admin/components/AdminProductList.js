@@ -19,7 +19,7 @@ import {
   selectBrands,
   selectCategories,
   selectTotalItems,
-} from "../productSlice";
+} from "../../product/productSlice";
 
 import { ITEMS_PER_PAGE } from "../../../app/constants";
 
@@ -45,44 +45,9 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-// const oldproducts = [
-//   {
-//     id: 1,
-//     name: 'Basic Tee',
-//     href: '#',
-//     thumbnail: 'https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg',
-//     imageAlt: "Front of men's Basic Tee in black.",
-//     price: '$35',
-//     color: 'Black',
-//   },
-//   {
-//     id: 2,
-//     name: 'Basic Tee',
-//     href: '#',
-//     thumbnail: 'https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg',
-//     imageAlt: "Front of men's Basic Tee in black.",
-//     price: '$35',
-//     color: 'Black',
-//   },
-//   {
-//     id: 3,
-//     name: 'Basic Tee',
-//     href: '#',
-//     thumbnail: 'https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg',
-//     imageAlt: "Front of men's Basic Tee in black.",
-//     price: '$35',
-//     color: 'Black',
-//   },
-
-//   // More products...
-// ];
-
-// More products...
-// ]
 
 
-
- export default function ProductList() {
+ export default function AdminProductList() {
   // const count = useSelector(selectCount);
   const dispatch = useDispatch();
   // const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);  // cut
@@ -152,7 +117,6 @@ function classNames(...classes) {
   useEffect(() => {
     const pagination = {_page: page, _limit: ITEMS_PER_PAGE}
     dispatch(fetchProductsByFiltersAsync({filter,sort,pagination}));
-    // TODO: server will filter deleted products
   }, [dispatch, filter,sort,page]);
 
   useEffect(() => {
@@ -250,6 +214,14 @@ function classNames(...classes) {
 
               {/* Product grid */}
               <div className="lg:col-span-3">
+              <div className="mt-2">
+      <Link
+      to="/admin/product-form"
+        className=" rounded-md mx-4 bg-green-700 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+      >
+        Add New Product
+      </Link>
+    </div>
                 {/* This is our Products List Page */}
 <ProductGrid products={products}></ProductGrid>
               </div>
@@ -526,7 +498,7 @@ function Pagination({page, setPage, handlePage, totalItems}) {
             </div>
   </div> );
 }
-// below is correct but its without bandage of discount percentage
+
 // function ProductGrid({products}) {
 //   return (
 //     <div className="bg-white">
@@ -534,14 +506,17 @@ function Pagination({page, setPage, handlePage, totalItems}) {
 //       {/* <h2 className="text-2xl font-bold tracking-tight text-gray-900">Products</h2> */}
 
 //       <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
+ 
 //         {products.map((product) => (
+//           <div key={product.id}>
+//           <div className="group relative border-solid border-2 p-3 border-gray-200">
 //           <Link
 //             to={`product-detail/${product.id}`}
 //             key={product.id}
-//             className="group relative border-solid border-2 p-3 border-gray-200"
+            
 //           >
-//             <div className="min3-h-60 aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-60">
-//               {" "}
+//             <div className="min-h-60 aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-60">
+              
 //               {/* New Changes */}
 //               <img
 //                 src={product.thumbnail}
@@ -580,15 +555,33 @@ function Pagination({page, setPage, handlePage, totalItems}) {
 //                 </p>{" "}
 //                 {/* use s/del tag to cut a word */}
 //               </div>
-              
+             
 //             </div>
 //             {product.deleted && <div className=" text-red-500">
-//                 <p>Product Deleted</p>
+//                 <b><p>Product Deleted</p></b>
                 
 //               </div>}
     
 //           </Link>
+//           </div>
+//           <div className="mt-3">
+//       <Link 
+//       to={`/admin/product-form/edit/${product.id}`}
+//         className="w-full cursor-pointer rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+//       >
+//         Edit Product
+//       </Link>
+//     </div>
+//           </div>
+         
+      
+    
+     
+
+                
+                    
 //         ))}
+       
 //       </div>
 //     </div>
 //   </div>
@@ -601,55 +594,58 @@ function ProductGrid({ products }) {
       <div className="mx-auto max-w-5xl px-4 py-0 sm:px-6 sm:py-0 lg:max-w-8xl lg:px-5">
         <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
           {products.map((product) => (
-            <Link
-              to={`product-detail/${product.id}`}
-              key={product.id}
-              className="group relative border-solid border-2 p-3 border-gray-200"
-            >
-              {product.discountPercentage > 0 && (
-                <span className="bg-green-500 text-white py-1 px-2 rounded-full text-xs absolute top-2 right-2 z-10">
-                  {product.discountPercentage}% OFF
-                </span>
-              )}
-              <div className="min3-h-60 aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-60">
-                <img
-                  src={product.thumbnail}
-                  alt={product.title}
-                  className="h-full w-full object-cover object-center lg:h-full lg:w-full"
-                />
-              </div>
-              <div className="mt-4 flex justify-between">
-                <div>
-                  <h3 className="text-sm text-gray-700">
-                    <div href={product.thumbnail}>
-                      <span aria-hidden="true" className="absolute inset-0" />
-                      {product.title}
-                    </div>
-                  </h3>
-                  <p className="mt-1 text-sm text-gray-500">
-                    <StarIcon className="w-5 h-5 inline"></StarIcon>
-                    <span className="align-bottom">{product.rating}</span>
-                  </p>
+            <div key={product.id} className="relative border-solid border-2 p-3 border-gray-200">
+              <Link to={`product-detail/${product.id}`} key={product.id}>
+                {product.discountPercentage > 0 && (
+                  <span className="bg-green-500 text-white py-1 px-2 rounded-full text-xs absolute top-2 right-2 z-10">
+                    {product.discountPercentage}% OFF
+                  </span>
+                )}
+                <div className="min-h-60 aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-60">
+                  <img
+                    src={product.thumbnail}
+                    alt={product.title}
+                    className="h-full w-full object-cover object-center lg:h-full lg:w-full"
+                  />
                 </div>
-                <div>
-                  <p className="text-sm font-medium text-gray-900">
-                    ${Math.round(
-                      product.price * (1 - product.discountPercentage / 100)
-                    )}
-                  </p>
-                  {product.discountPercentage > 0 && (
+                <div className="mt-4 flex justify-between">
+                  <div>
+                    <h3 className="text-sm text-gray-700">
+                      <div href={product.thumbnail}>
+                        <span
+                          aria-hidden="true"
+                          className="absolute inset-0"
+                        />
+                        {product.title}
+                      </div>
+                    </h3>
+                    <p className="mt-1 text-sm text-gray-500">
+                      <StarIcon className="w-5 h-5 inline"></StarIcon>
+                      <span className="align-bottom">
+                        {product.rating}
+                      </span>
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-sm font-medium text-gray-900">
+                      $
+                      {Math.round(
+                        product.price *
+                          (1 - product.discountPercentage / 100)
+                      )}
+                    </p>
                     <p className="text-sm block font-medium text-gray-400 line-through">
                       ${product.price}
                     </p>
-                  )}
+                  </div>
                 </div>
-              </div>
-              {product.deleted && (
-                <div className="text-red-500">
-                  <p>Product Deleted</p>
-                </div>
-              )}
-            </Link>
+                {product.deleted && (
+                  <div className=" text-red-500">
+                    <b><p>Product Deleted</p></b>
+                  </div>
+                )}
+              </Link>
+            </div>
           ))}
         </div>
       </div>

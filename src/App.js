@@ -30,11 +30,35 @@ import UserOrdersPage from './pages/UserOrdersPage';
 import UserProfile from './features/user/components/UserProfile';
 import UserProfilePage from './pages/UserProfilePage';
 import { fetchLoggedInUserAsync } from './features/user/userSlice';
+import Logout from './features/auth/components/Logout';
 
+import ProtectedAdmin from './features/auth/components/ProtectedAdmin';
+import AdminHome from './pages/AdminHome';
+import ForgotPasswordPage from './pages/ForgotPasswordPage';
+import AdminProductDetailPage from './pages/AdminProductDetailPage';
+import AdminProductFormPage from './pages/AdminProductFormPage';
+
+// routing
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Protected> <Home></Home></Protected> ,
+  },
+  {
+    path: "/admin",
+    element: <ProtectedAdmin> <AdminHome></AdminHome></ProtectedAdmin> ,
+  },
+  {
+    path: "/admin/product-detail/:id",
+    element: <ProtectedAdmin><AdminProductDetailPage></AdminProductDetailPage> </ProtectedAdmin>,
+  },
+  {
+    path: "/admin/product-form",
+    element: <ProtectedAdmin><AdminProductFormPage></AdminProductFormPage> </ProtectedAdmin>,
+  },
+  {
+    path: "/admin/product-form/edit/:id",
+    element: <ProtectedAdmin><AdminProductFormPage></AdminProductFormPage> </ProtectedAdmin>,
   },
   {
     path: "/login",
@@ -71,6 +95,16 @@ const router = createBrowserRouter([
 
   },
   {
+    path: "/logout",
+    element: <Logout></Logout>,
+
+  },
+  {
+    path: "/forgot-password",
+    element: <ForgotPasswordPage></ForgotPasswordPage>,
+
+  },
+  {
     path: "*",   // wild card
     element: <NavBar><PageNotFound> </PageNotFound> </NavBar>,
   },
@@ -93,7 +127,7 @@ function App() {
     <div className="App">
       
      <RouterProvider router={router} />
-
+     {/* Link must be inside the provider */}
     </div>
   );
 }
