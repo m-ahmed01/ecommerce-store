@@ -142,7 +142,10 @@ const handleCart = (e)=>{
           {/* Options */}
           <div className="mt-4 lg:row-span-3 lg:mt-0">
             <h2 className="sr-only">Product information</h2>
-            <p className="text-3xl tracking-tight text-gray-900">${Math.round(
+            <p className="text-2xl line-through tracking-tight text-gray-900">
+              Actual Price: ${product.price}
+            </p>
+            <p className="text-3xl tracking-tight text-red-600">Discounted Price: ${Math.round(
                     product.price *
                       (1 - product.discountPercentage / 100)
                   )}</p>

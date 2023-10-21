@@ -8,7 +8,7 @@ import { RadioGroup } from '@headlessui/react'
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchProductByIdAsync, selectProductById } from '../productSlice';
 import { useParams } from 'react-router-dom';
-import { addToCartAsync } from '../../cart/cartSlice';
+import { addToCartAsync, selectItems } from '../../cart/cartSlice';
 import { selectLoggedInUser } from '../../auth/authSlice';
 // ToDo: In server Data we will add colors, sizes,highlights etc to each product.
 
@@ -42,19 +42,25 @@ function classNames(...classes) {
 
 
 export default function ProductDetail() {
-  const [selectedColor, setSelectedColor] = useState(colors[0])
-  const [selectedSize, setSelectedSize] = useState(sizes[2])
-  const user = useSelector(selectLoggedInUser)
+  const [selectedColor, setSelectedColor] = useState(colors[0]);
+  const [selectedSize, setSelectedSize] = useState(sizes[2]);
+  const user = useSelector(selectLoggedInUser);
+  const items = useSelector(selectItems);
 
   // add to cart
   
 const handleCart = (e)=>{
   e.preventDefault();
                                         // works but add same item for couple of times
-  // const newItem = {...product, quantity:1, user:user.id, };
-  // delete newItem['id'];
-  // dispatch(addToCartAsync(newItem));
-  dispatch(addToCartAsync({...product, quantity:1, user:user.id }));
+  if(items.findIndex((item)=>item.productId === product.id)<0){
+    const newItem = {...product, productId:product.id, quantity:1, user:user.id, };
+    delete newItem['id'];
+    dispatch(addToCartAsync(newItem));
+  }else{
+    console.log("Product Already Added to Cart")
+  }
+ 
+  // dispatch(addToCartAsync({...product, quantity:1, user:user.id }));
 }
 
   // fetching product
@@ -143,7 +149,10 @@ const handleCart = (e)=>{
           <div className="mt-4 lg:row-span-3 lg:mt-0">
             <h2 className="sr-only">Product information</h2>
            
-            <p className="text-3xl tracking-tight text-gray-900">${Math.round(
+            <p className="text-2xl line-through tracking-tight text-gray-900">
+              Actual Price: ${product.price}
+            </p>
+            <p className="text-3xl tracking-tight text-red-600">Discounted Price: ${Math.round(
                     product.price *
                       (1 - product.discountPercentage / 100)
                   )}</p>

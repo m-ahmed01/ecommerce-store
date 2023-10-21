@@ -16,9 +16,11 @@ const user1 = {
     'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
 }
 const navigation = [
-  { name: 'Home', link: '/', user: true,admin: true },
-  { name: 'Contact Us', link: '/contact', user: true,admin: true },
+  { name: 'Home', link: '/', user: true },
+  { name: 'Products', link: '/', admin: true },
+  // { name: 'Contact Us', link: '/contact', user: true,admin: true }, // yet to make
   { name: 'Admin', link: '/admin', admin: true},
+  { name: 'All Orders', link: '/admin/orders', admin: true},
 ]
 
 

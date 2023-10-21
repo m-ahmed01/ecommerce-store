@@ -3,7 +3,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { clearSelectedProduct, createProductAsync, fetchProductByIdAsync, selectBrands, selectCategories, selectProductById, updateProductAsync } from '../../product/productSlice';
 import { useForm } from 'react-hook-form';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 
 
@@ -360,9 +360,9 @@ function ProductForm() {
         </div>
   
         <div className="mt-6 flex items-center justify-end gap-x-6">
-          <button type="button" className="text-sm font-semibold leading-6 text-gray-900">
+          <Link to="/admin" className="text-sm font-semibold leading-6 text-gray-900" >
             Cancel
-          </button>
+          </Link>
 
           {selectedProduct && <button
            onClick={handleDelete}
