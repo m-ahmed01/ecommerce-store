@@ -19,10 +19,16 @@ import { useForm } from 'react-hook-form';
 import {  updateUserAsync } from '../features/auth/authSlice';
 import { createOrderAsync, selectCurrentOrder } from '../features/order/orderSlice';
 import { selectUserInfo } from '../features/user/userSlice';
+import { useAlert } from 'react-alert';
+import Modal from '../features/common/Modal';
+// import { Bars } from 'react-loader-spinner';
+
 
 
 
 function Checkout () {
+  const alert = useAlert();
+  // const [status, setStatus] = useState('loading');
   const dispatch = useDispatch();
 
   const {
@@ -35,6 +41,7 @@ function Checkout () {
   const user = useSelector(selectUserInfo);
 
   const items = useSelector(selectItems);
+  const [openModal, setOpenModal] = useState(null);
 
   const currentOrder = useSelector(selectCurrentOrder);
 
@@ -74,7 +81,10 @@ function Checkout () {
   const handleOrder =(e)=>{
     if (selectedAddress &&paymentMethod ) {
       const order = {items, totalAmount,totalItems,user,paymentMethod,selectedAddress, status:'pending'}  // other status can be delivered, received (Admin route)
-   dispatch(createOrderAsync(order));
+      // setStatus('loading');
+      dispatch(createOrderAsync(order));
+   alert.success("Order Placed");
+  //  setStatus('success');
     
     }
       if (!paymentMethod || !selectedAddress) {
@@ -94,6 +104,13 @@ function Checkout () {
       <>
       {!items.length && <Navigate to='/' replace={true}></Navigate>}
       {currentOrder && <Navigate to={`/order-success/${currentOrder.id}`} replace={true}></Navigate>}
+
+      {/* {status === 'loading' && (
+        <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex items-center justify-center">
+          <Bars height="80" width="80" color="#4fa94d" ariaLabel="bars-loading" />
+        </div>
+      )} */}
+
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-5">
             <div className="lg:col-span-3">
@@ -468,13 +485,25 @@ item.price *
           </div>
 
           <div className="flex">
-            <button onClick={e=>handleRemove(e,item.id)}
-              type="button"
-              className="font-medium text-indigo-600 hover:text-indigo-500"
-            >
-              Remove
-            </button>
-          </div>
+                          <Modal
+                            title={`Delete ${item.title}`}
+                            message="Are you sure, you want to Delete this item from Cart ?"
+                            dangerButtonOption="Delete"
+                            cancelButtonOption="Cancel"
+                            dangerAction={(e) => handleRemove(e, item.id)}
+                            showModal={openModal === item.id}
+                            cancelAction={() => setOpenModal(-1)}
+                          ></Modal>
+                          <button
+                            onClick={(e) => {
+                              setOpenModal(item.id);
+                            }}
+                            type="button"
+                            className="font-medium text-indigo-600 hover:text-indigo-500"
+                          >
+                            Remove
+                          </button>
+                        </div>
         </div>
       </div>
     </li>

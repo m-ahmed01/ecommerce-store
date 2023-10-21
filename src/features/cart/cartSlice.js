@@ -113,6 +113,7 @@ export const { increment } = cartSlice.actions;
 
 // Modified selector with optional chaining
 export const selectItems = (state) => state.cart.items;
+export const selectCartStatus = (state) => state.cart.status;
 
 
 export default cartSlice.reducer;

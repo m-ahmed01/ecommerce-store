@@ -18,6 +18,7 @@ import {
   selectAllProducts,
   selectBrands,
   selectCategories,
+  selectProductListStatus,
   selectTotalItems,
 } from "../productSlice";
 
@@ -34,6 +35,7 @@ import {
 } from "@heroicons/react/20/solid";
 import { Link } from "react-router-dom";
 import Pagination from "../../common/Pagination";
+import { Bars } from "react-loader-spinner";
 
 const sortOptions = [
   { name: "Best Rating", sort: "rating", order: "desc", current: false },
@@ -86,6 +88,7 @@ function classNames(...classes) {
  export default function ProductList() {
   // const count = useSelector(selectCount);
   const dispatch = useDispatch();
+  const status = useSelector(selectProductListStatus);
   // const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);  // cut
 
   const products = useSelector(selectAllProducts);
@@ -167,6 +170,7 @@ function classNames(...classes) {
 
   return (
     <div className="bg-white p-2">
+    
       <div>
         <MobileFilter filters={filters} handleFilter={handleFilter} mobileFiltersOpen={mobileFiltersOpen} setMobileFiltersOpen={setMobileFiltersOpen}></MobileFilter>
 
@@ -252,7 +256,7 @@ function classNames(...classes) {
               {/* Product grid */}
               <div className="lg:col-span-3">
                 {/* This is our Products List Page */}
-<ProductGrid products={products}></ProductGrid>
+<ProductGrid products={products} status={status}></ProductGrid>
               </div>
               {/* Product grid end */}
             </div>
@@ -597,11 +601,23 @@ function DesktopFilter({handleFilter,filters}) {
 //   ) ;
 // }
 
-function ProductGrid({ products }) {
+function ProductGrid({ products, status }) {
   return (
     <div className="bg-white">
       <div className="mx-auto max-w-5xl px-4 py-0 sm:px-6 sm:py-0 lg:max-w-8xl lg:px-5">
         <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
+          
+        {status === 'loading' ? (
+            <div className="col-span-3 flex justify-center items-center h-full">
+              <Bars
+                height="80"
+                width="80"
+                color="#4fa94d" // could be rgb(79,70,229)
+                ariaLabel="bars-loading"
+              />
+            </div>
+          ) : null}
+
           {products.map((product) => (
             <Link
               to={`product-detail/${product.id}`}

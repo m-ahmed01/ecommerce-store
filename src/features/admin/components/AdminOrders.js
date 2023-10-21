@@ -63,8 +63,10 @@ function AdminOrders() {
                 return 'bg-green-200 text-green-600';
             case 'cancelled':
                 return 'bg-red-200 text-red-600';
-            default:
+            case 'inprogress':
                 return 'bg-yellow-200 text-yellow-600';
+            default:
+                return 'bg-orange-200 text-orange-600';
         }
     }
 
@@ -139,8 +141,10 @@ function AdminOrders() {
               </td>
               <td className="py-3 px-6 text-center">
              {order.id === editableOrderId ?  ( <select onChange={e=>handleUpdate(e,order)}>
+                    <option value="">Choose Option</option>
                     <option value="pending">Pending</option>
                     <option value="dispatched">Dispatched</option>
+                    <option value="inprogress">In progress</option>
                     <option value="delivered">Delivered</option>
                     <option value="cancelled">Cancelled</option>
                 </select> ) : (
@@ -161,9 +165,9 @@ function AdminOrders() {
                   <div className="w-6 mr-3 transform hover:text-green-500 hover:scale-120">
                     <PencilIcon className="w-5 h-5 cursor-pointer" onClick={e=>handleEdit(order)}></PencilIcon>
                   </div>
-                  <div className="w-4 mr-2 transform hover:text-red-500 hover:scale-120">
+                  {/* <div className="w-4 mr-2 transform hover:text-red-500 hover:scale-120">
                    <TrashIcon className="w-5 h-5 cursor-pointer" onClick={e=>handleDelete(order)}></TrashIcon>
-                  </div>
+                  </div> */}
                 </div>
               </td>
             </tr>)}

@@ -38,6 +38,14 @@ import ForgotPasswordPage from './pages/ForgotPasswordPage';
 import AdminProductDetailPage from './pages/AdminProductDetailPage';
 import AdminProductFormPage from './pages/AdminProductFormPage';
 import AdminOrdersPage from './pages/AdminOrdersPage';
+// react alerts
+import { positions, Provider } from "react-alert";
+import AlertTemplate from "react-alert-template-basic";
+// react alerts
+const options = {
+  timeout: 4000,
+  position: positions.BOTTOM_CENTER,
+};
 
 // routing
 const router = createBrowserRouter([
@@ -128,12 +136,15 @@ function App() {
   }, [dispatch, user]);  // user.id
 
   return (
-
+<>
     <div className="App">
-      
+        <Provider template={AlertTemplate} {...options}>
+
      <RouterProvider router={router} />
+     </Provider>
      {/* Link must be inside the provider */}
     </div>
+    </>
   );
 }
 

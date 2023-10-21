@@ -1,8 +1,9 @@
 
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import NavBar from "../features/navbar/Navbar";
 import ProductList from "../features/product/components/ProductList";
 import TopBar from "./TopBarTitle";
+import Footer from "../features/common/Footer";
 // import TopBar from "./TopBarTitle";
 
 function Home () {
@@ -20,7 +21,7 @@ function Home () {
           <br></br>
                 <ProductList>  </ProductList>  {/*putting ProductList as children to NavBar*/}
             </NavBar>
-          
+          <Footer></Footer>
 
         </div>
      );

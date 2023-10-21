@@ -142,8 +142,9 @@ export const productSlice = createSlice({
       })
       .addCase(updateProductAsync.fulfilled, (state, action) => {
         state.status = 'idle';
-        const index = state.products.findIndex((product)=> product.id === action.payload.id)
+        const index = state.products.findIndex((product)=> product.id === action.payload.id);
         state.products[index] = action.payload;  // updated product here
+        state.selectedProduct = action.payload; // comeback to that product page immediately and update status of deleted
       });
   },
 });
@@ -159,6 +160,9 @@ export const selectCategories = (state) => state.product.categories;
 // For Product-detail
 export const selectProductById = (state) => state.product.selectedProduct;
 
+export const selectProductListStatus = (state) => state.product.status;
+
 export const selectTotalItems = (state) => state.product.totalItems;
+export const selectProductDetailStatus = (state) => state.product.status;
 
 export default productSlice.reducer;

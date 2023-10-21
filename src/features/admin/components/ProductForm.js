@@ -53,6 +53,7 @@ function ProductForm() {
   const handleDelete = ()=>{
     const product = {...selectedProduct};
     product.deleted=true; // you are not deleting the product just selecting the property of delete as true
+
     dispatch(updateProductAsync(product));
   }
 
@@ -92,6 +93,10 @@ function ProductForm() {
            
   
             <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+            {selectedProduct && selectedProduct.deleted && (
+  <h2 className="text-red-500 text-2xl sm:col-span-6">This product is deleted</h2>
+)}
+
               <div className="sm:col-span-5">
                 <label htmlFor="title" className="block text-sm font-medium leading-6 text-gray-900">
                   Product Name <span style={{ color: 'red' }}>*</span>
@@ -364,13 +369,13 @@ function ProductForm() {
             Cancel
           </Link>
 
-          {selectedProduct && <button
+          {selectedProduct && !selectedProduct.deleted &&( <button
            onClick={handleDelete}
             className="rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
           >
             Delete
           </button>
-} 
+   )} 
 
           <button
             type="submit"

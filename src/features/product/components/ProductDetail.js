@@ -6,10 +6,13 @@ import { useEffect, useState } from 'react'
 import { StarIcon } from '@heroicons/react/20/solid'
 import { RadioGroup } from '@headlessui/react'
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchProductByIdAsync, selectProductById } from '../productSlice';
+import { fetchProductByIdAsync, selectProductById, selectProductListStatus } from '../productSlice';
 import { useParams } from 'react-router-dom';
 import { addToCartAsync, selectItems } from '../../cart/cartSlice';
 import { selectLoggedInUser } from '../../auth/authSlice';
+import { useAlert } from "react-alert";
+import { Bars } from 'react-loader-spinner';
+
 // ToDo: In server Data we will add colors, sizes,highlights etc to each product.
 
   const colors= [
@@ -45,7 +48,9 @@ export default function ProductDetail() {
   const [selectedColor, setSelectedColor] = useState(colors[0]);
   const [selectedSize, setSelectedSize] = useState(sizes[2]);
   const user = useSelector(selectLoggedInUser);
+  const status = useSelector(selectProductListStatus);
   const items = useSelector(selectItems);
+  const alert = useAlert();
 
   // add to cart
   
@@ -56,8 +61,12 @@ const handleCart = (e)=>{
     const newItem = {...product, productId:product.id, quantity:1, user:user.id, };
     delete newItem['id'];
     dispatch(addToCartAsync(newItem));
+    //TODO: it will be based on server response on backend
+    alert.success("Product Added to Cart");
   }else{
-    console.log("Product Already Added to Cart")
+    // console.log("Product Already Added to Cart");
+    alert.error("Product Already Added to Cart");
+
   }
  
   // dispatch(addToCartAsync({...product, quantity:1, user:user.id }));
@@ -74,9 +83,21 @@ const handleCart = (e)=>{
 
   return (
     <div className="bg-white">
+           {status === 'loading' ? (
+  <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+    <Bars
+      height="80"
+      width="80"
+      color="#4fa94d"
+      ariaLabel="bars-loading"
+    />
+  </div>
+) : null}
       {product && (
       <div className="pt-6">
+   
         <nav aria-label="Breadcrumb">
+        
           <ol role="list" className="mx-auto flex max-w-2xl items-center space-x-2 px-4 sm:px-6 lg:max-w-7xl lg:px-8">
             {product.breadcrumbs && product.breadcrumbs.map((breadcrumb) => (
               <li key={breadcrumb.id}>
@@ -287,7 +308,16 @@ const handleCart = (e)=>{
               >
                 Add to Cart
               </button>
+         
             </form>
+            {/* <button 
+              className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+        onClick={() => {
+          alert.show("Oh look, an alert!");
+        }}
+      >
+Show Alert
+      </button> */}
           </div>
 
           <div className="py-10 lg:col-span-2 lg:col-start-1 lg:border-r lg:border-gray-200 lg:pb-16 lg:pr-8 lg:pt-6">
