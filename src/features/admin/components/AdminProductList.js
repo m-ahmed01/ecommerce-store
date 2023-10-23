@@ -474,8 +474,7 @@ function Pagination({page, setPage, handlePage, totalItems}) {
                 {Array.from({length:totalPages}).map(
                   (el,index)=>(
                 
-                <div style={{cursor : "pointer"}}
-                key ={index}   // newly added by BOT
+                <div key={index} style={{cursor : "pointer"}}
                 onClick={e=>handlePage(index+1)}
                 aria-current="page"
                 className={`relative z-10 inline-flex items-center ${index+1 === page? 'bg-indigo-600 text-white' : ' text-gray-400' } px-4 py-2 text-sm font-semibold  focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600`}
@@ -570,7 +569,7 @@ function ProductGrid({products}) {
     
           </Link>
           </div>
-          <div className="mt-3">
+          <div key={product.id} className="mt-3">
       <Link 
       to={`/admin/product-form/edit/${product.id}`}
         className="w-full cursor-pointer rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"

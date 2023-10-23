@@ -16,7 +16,7 @@ import {
 import { Link, Navigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
-import {  updateUserAsync } from '../features/auth/authSlice';
+import {  updateUserAsync } from '../features/user/userSlice';
 import { createOrderAsync, selectCurrentOrder } from '../features/order/orderSlice';
 import { selectUserInfo } from '../features/user/userSlice';
 import { useAlert } from 'react-alert';
@@ -54,9 +54,8 @@ function Checkout () {
   //   return Math.round(item.price * (1 - item.discountPercentage / 100)) * item.quantity + amount;
   // }, 0);
   // adding in backend
-  const totalAmount = items.reduce((amount, item) => {
-    discountedPrice(item.product* item.quantity + amount,0);
-  }, 0);
+  const totalAmount = items.reduce((amount, item) => 
+    discountedPrice(item.product)* item.quantity + amount,0);
 
   const totalItems = items.reduce((total,item)=>item.quantity+total, 0 );
   const handleQuantity = (e,item)=>{
@@ -86,7 +85,7 @@ function Checkout () {
 
   const handleOrder =(e)=>{
     if (selectedAddress &&paymentMethod ) {
-      const order = {items, totalAmount,totalItems,user,paymentMethod,selectedAddress, status:'pending'}  // other status can be delivered, received (Admin route)
+      const order = {items, totalAmount,totalItems,user:user.id,paymentMethod,selectedAddress, status:'pending'}  // other status can be delivered, received (Admin route)
       // setStatus('loading');
       dispatch(createOrderAsync(order));
    alert.success("Order Placed");
@@ -490,7 +489,7 @@ function Checkout () {
 
           <div className="flex">
                           <Modal
-                            title={`Delete ${item.title}`}
+                            title={`Delete ${item.product.title}`}
                             message="Are you sure, you want to Delete this item from Cart ?"
                             dangerButtonOption="Delete"
                             cancelButtonOption="Cancel"

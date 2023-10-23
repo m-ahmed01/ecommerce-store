@@ -71,7 +71,7 @@ for(let key in filter){
 for(let key in sort){
   queryString+= `${key}=${sort[key]}&`
 }
-console.log(pagination);
+// console.log(pagination);
 for(let key in pagination){
   queryString+= `${key}=${pagination[key]}&`
 }

@@ -95,16 +95,16 @@ const router = createBrowserRouter([
   },
   {
     path: "/order-success/:id",
-    element: <NavBar> <OrderSuccessPage> </OrderSuccessPage> </NavBar>,
+    element: <Protected> <NavBar> <OrderSuccessPage> </OrderSuccessPage> </NavBar> </Protected>,
   },
   {
     path: "/orders",
-    element: <UserOrdersPage></UserOrdersPage>,
+    element: <Protected> <UserOrdersPage></UserOrdersPage> </Protected>,
     // we will add page later, right now using component directly
   },
   {
     path: "/profile",
-    element: <UserProfilePage></UserProfilePage>,
+    element: <Protected> <UserProfilePage></UserProfilePage> </Protected>,
 
   },
   {

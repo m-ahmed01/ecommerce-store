@@ -8,7 +8,7 @@ import { useForm } from 'react-hook-form';
 export default function UserProfile() {
 // TODO: We will add payment section in backend
   const dispatch = useDispatch();
-  const user = useSelector(selectUserInfo);
+  const userInfo = useSelector(selectUserInfo);
   const {
     register,
     handleSubmit,
@@ -22,21 +22,21 @@ const [showAddAddressForm, setShowAddAddressForm] = useState(false);
 
 
   const handleEdit = (addressUpdate,index) =>{
-    const newUser = {...user, addresses:[...user.addresses]};  // for shallow copy issue
+    const newUser = {...userInfo, addresses:[...userInfo.addresses]};  // for shallow copy issue
     newUser.addresses.splice(index,1, addressUpdate);
     dispatch(updateUserAsync(newUser));
     setSelectedEditIndex(-1);
    
   }
   const handleRemove = (e,index) =>{
-    const newUser = {...user, addresses:[...user.addresses]};  // for shallow copy issue
+    const newUser = {...userInfo, addresses:[...userInfo.addresses]};  // for shallow copy issue
     newUser.addresses.splice(index,1);
     dispatch(updateUserAsync(newUser));
   }
 
 const handleEditForm = (index)=>{
   setSelectedEditIndex(index);
-  const address = user.addresses[index];
+  const address = userInfo.addresses[index];
   setValue('name',address.name);
   setValue('email',address.email);
   setValue('phone',address.phone);
@@ -47,7 +47,7 @@ const handleEditForm = (index)=>{
 }
 
 const handleAdd = (address) =>{
-  const newUser = {...user, addresses:[...user.addresses, address]};
+  const newUser = {...userInfo, addresses:[...userInfo.addresses, address]};
   dispatch(updateUserAsync(newUser));
   setShowAddAddressForm(false);
 }
@@ -57,16 +57,20 @@ const handleAdd = (address) =>{
        <div>
           <div className="mx-auto mt-7 bg-white max-w-7xl px-4 py-3 sm:px-6 lg:px-8">
           <h1 className="text-4xl my-2 font-bold tracking-tight mb-2 text-gray-900">
-   <span >{user.name? user.name.charAt(0).toUpperCase() + user.name.slice(1): 'New User (Guest)'}</span>
+   <span >Name: {userInfo.name? userInfo.name.charAt(0).toUpperCase() + userInfo.name.slice(1): 'New User (Guest)'}</span>
 </h1>
 
                           <div className="border-t border-gray-200 px-4 py-4 sm:px-6">
                           <h3 className="text-xl font-bold tracking-tight  text-red-700">
-    Email: {user.email}
+    Email: {userInfo.email}
 </h3>
-                          {user.role === 'admin' && <h3 className="text-xl font-bold tracking-tight  text-green-500">
-    Role: {user.role}
-</h3>}
+<div className='flex justify-end'>
+                          {userInfo.role === 'admin' ? ( <h3 className="text-xl font-bold tracking-tight  text-green-500">
+    Role: {userInfo.role} 
+</h3>) : ( <h3 className="text-xl font-bold tracking-tight  text-red-500">
+    Role: {userInfo.role} 
+</h3>) }
+</div>
                       </div>
                     <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
                   
@@ -248,8 +252,8 @@ const handleAdd = (address) =>{
 
  
     </form>: null}
-{user.addresses.map((address,index)=>
-<div>
+{userInfo.addresses.map((address,index)=>
+<div key={index}>
 
     {selectedEditIndex === index ? <form className="bg-white px-6 mt-12 py-5"  noValidate
   onSubmit={handleSubmit((data) => {

@@ -59,6 +59,9 @@ export default function Cart() {
     dispatch(updateCartAsync({ id:item.id, quantity: +e.target.value }));
   };
 
+
+  
+
   const handleRemove = (e, id) => {
     dispatch(deleteItemFromCartAsync(id));
   };

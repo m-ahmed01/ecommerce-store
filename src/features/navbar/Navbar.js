@@ -188,6 +188,7 @@ function NavBar ({children}) {   // inserted children as prop
                         <img className="h-10 w-10 rounded-full" src={user1.imageUrl} alt="" />
                       </div>
                       <div className="ml-3 mr-11 ">
+                        {/* this should come from userInfo */}
                         <div className="text-base font-medium leading-none text-white">{user1.name}</div>
                         <div className="text-sm font-medium leading-none text-gray-400">{user1.email}</div>
                       </div>
