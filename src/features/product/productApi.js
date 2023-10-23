@@ -1,15 +1,16 @@
 
 
 // A mock function to mimic making an async request for data
-export function fetchAllProducts() { 
-  return new Promise(async(resolve) => { // here we used promise
-    // TODO: we will not hardcode server URL here 
-    const response = await fetch(`http://localhost:8080/products`);
-    const data = await response.json();
-    resolve({data});
-  }
-  );
-}
+// Not using anywhere
+// export function fetchAllProducts() { 
+//   return new Promise(async(resolve) => { // here we used promise
+//     // TODO: we will not hardcode server URL here 
+//     const response = await fetch(`http://localhost:8080/products`);
+//     const data = await response.json();
+//     resolve({data});
+//   }
+//   );
+// }
 
 // newly added for product page
 export function fetchProductById(id) { 
@@ -52,7 +53,7 @@ export function updateProduct(update) {
 
 
 
-export function fetchProductsByFilters(filter,sort,pagination) { 
+export function fetchProductsByFilters(filter,sort,pagination, admin) { 
   // filter  = {"category": ["smartphone","laptops"]}
   // sort = {_sort:"price", _order="desc"}
   // pagination = {_page:1, _limit=10}  // _page=1&_limit=10
@@ -74,6 +75,9 @@ for(let key in sort){
 // console.log(pagination);
 for(let key in pagination){
   queryString+= `${key}=${pagination[key]}&`
+}
+if(admin){
+  queryString+= `admin=true`;
 }
 
   return new Promise(async(resolve) => { // here we used promise

@@ -4,7 +4,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { clearSelectedProduct, createProductAsync, fetchProductByIdAsync, selectBrands, selectCategories, selectProductById, updateProductAsync } from '../../product/productSlice';
 import { useForm } from 'react-hook-form';
 import { Link, useParams } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import Modal from '../../common/Modal';
+import { useAlert } from 'react-alert';
 
 
 function ProductForm() {
@@ -21,6 +23,8 @@ function ProductForm() {
   const categories = useSelector(selectCategories);
   const dispatch= useDispatch();
   const params = useParams();
+  const[openModal, setOpenModal] = useState(null);
+  const alert= useAlert();
 
   useEffect(()=>{
     if(params.id){
@@ -55,10 +59,11 @@ function ProductForm() {
     product.deleted=true; // you are not deleting the product just selecting the property of delete as true
 
     dispatch(updateProductAsync(product));
+    alert.error("Product Deleted");
   }
 
     return ( 
-
+      <>
         <form noValidate onSubmit={handleSubmit((data) => {
             const product={...data}
             product.images = [product.image1, product.image2, product.image3, product.thumbnail]
@@ -74,12 +79,14 @@ function ProductForm() {
             console.log(product);
             if(params.id){
               product.id = params.id;
-              // product.rating = selectedProduct.rating || 0; // its working
+              product.rating = selectedProduct.rating || 0; // its working
               dispatch(updateProductAsync(product));
+              alert.success("Product Updated Successfully");
               reset();
 
             }else{
               dispatch(createProductAsync(product));
+              alert.success("Product Created");
               reset();
               // ToDo; on product successfully added clear the fields and show message
 
@@ -138,7 +145,7 @@ function ProductForm() {
                 </label>
                 <div className="mt-2">
                 <select {...register('brand',{required:"Product Brand is required"})}  >
-                    <option vlaue="">Choose Brand</option>
+                    <option value="">Choose Brand</option>
                     {brands.map((brand)=>(
                     <option key={brand.value} value={brand.value}>{brand.label}</option>
                     ))}
@@ -152,7 +159,7 @@ function ProductForm() {
                 </label>
                 <div className="mt-2">
                 <select {...register('category',{required:"Product category is required"})} >
-                    <option vlaue="">Choose Category</option>
+                    <option value="">Choose Category</option>
                     {categories.map((category)=>(
                     <option key={category.value} value={category.value}>{category.label}</option>
                     ))}
@@ -385,7 +392,16 @@ function ProductForm() {
           </button>
         </div>
       </form>
-
+      {selectedProduct && <Modal
+        title={`Delete ${selectedProduct.title}`}
+        message="Are you sure you want to delete this Product ?"
+        dangerOption="Delete"
+        cancelOption="Cancel"
+        dangerAction={handleDelete}
+        cancelAction={() => setOpenModal(null)}
+        showModal={openModal}
+      ></Modal>}
+      </>
      );
 }
 

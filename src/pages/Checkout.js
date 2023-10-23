@@ -284,7 +284,7 @@ function Checkout () {
                     name="address"
                     type="radio"
                     value={index}
-                    className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                    className="h-4 w-4 cursor-pointer border-gray-300 text-indigo-600 focus:ring-indigo-600"
                   />
             <div className="min-w-0 flex-auto">
               <p className="text-sm font-semibold leading-6 text-gray-950"> {address.name}</p>
@@ -313,11 +313,11 @@ function Checkout () {
                   value="cash"
                     id="cash"
                     name="payments"
-                    checked={paymentMethod === "cash"}
+                    checked={paymentMethod === "cash"}   // optional
                     type="radio"
-                    className="h-4 w-4 text-medium border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                    className="h-4 w-4 cursor-pointer text-medium border-gray-300 text-indigo-600 focus:ring-indigo-600"
                   />
-                  <label htmlFor="cash" className="block text-sm font-medium leading-6 text-gray-900">
+                  <label htmlFor="cash" className="block  text-sm font-medium leading-6 text-gray-900">
                     Cash
                   </label>
                 </div>
@@ -329,7 +329,7 @@ function Checkout () {
                     checked={paymentMethod === "card"}
                     name="payments"
                     type="radio"
-                    className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                    className="h-4 w-4 border-gray-300 cursor-pointer text-indigo-600 focus:ring-indigo-600"
                   />
                   <label htmlFor="card" className="block text-sm font-medium leading-6 text-gray-900">
                     Card Payment

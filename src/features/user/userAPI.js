@@ -1,7 +1,8 @@
 // A mock function to mimic making an async request for data
 export function fetchLoggedInUserOrders(userId) { 
   return new Promise(async(resolve) => { // here we used promise
-    const response = await fetch(`http://localhost:8080/orders/?user=`+userId);
+    // const response = await fetch(`http://localhost:8080/orders/?user=`+userId);   // old
+    const response = await fetch(`http://localhost:8080/orders/user/`+userId);
     const data = await response.json();
     resolve({data});
   }

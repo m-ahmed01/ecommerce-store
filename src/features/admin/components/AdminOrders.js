@@ -36,8 +36,8 @@ function AdminOrders() {
 
     const handlePage = (page)=>{
         setPage(page);
-        // const pagination = {_page:page, _limit:ITEMS_PER_PAGE};
-        // dispatch(fetchAllOrdersAsync( pagination));
+        const pagination = {_page:page, _limit:ITEMS_PER_PAGE};
+        dispatch(fetchAllOrdersAsync( pagination));
     }
 
     const handleSort = (sortOption) => {
@@ -111,13 +111,15 @@ function AdminOrders() {
                   <div className="mr-2">
                     <img
                       className="w-9 h-9 rounded-full"
-                      src={item.thumbnail}
+                      src={item.product.thumbnail}
+                      alt={item.product.title}
                     />
                   </div>
                   <span>
-  {item.title} - Qty <b className="bold" style={{ color: 'red' }}>#{item.quantity}</b> Item-Price(Disc): 
+                    {/* There is no need to add.product below */}
+  {item.product.title} - Qty <b className="bold" style={{ color: 'red' }}>#{item.quantity}</b> Item-Price(Disc): 
   <span style={{ color: 'red' }}>
-    ${discountedPrice(item)}
+    ${discountedPrice(item.product)}
   </span>
 </span>
 
@@ -179,7 +181,7 @@ function AdminOrders() {
   </div>
     {/* // Pagination here (Not Working) */}
    
-    {/* <Pagination page={page} setPage={setPage} handlePage={handlePage} totalItems={totalOrders} ></Pagination> */}  
+    <Pagination page={page} setPage={setPage} handlePage={handlePage} totalItems={totalOrders} ></Pagination>  
 </div>
 
      );

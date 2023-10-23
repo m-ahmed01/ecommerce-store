@@ -116,7 +116,7 @@ function classNames(...classes) {
 
   useEffect(() => {
     const pagination = {_page: page, _limit: ITEMS_PER_PAGE}
-    dispatch(fetchProductsByFiltersAsync({filter,sort,pagination}));
+    dispatch(fetchProductsByFiltersAsync({filter,sort,pagination, admin:true}));
   }, [dispatch, filter,sort,page]);
 
   useEffect(() => {
@@ -566,6 +566,11 @@ function ProductGrid({products}) {
                 <b><p>Product Deleted</p></b>
                 
               </div>}
+              {product.stock<=0 && (
+                  <div>
+                    <p className=" flex justify-end text-red-500"> <b>out of stock</b></p>
+                  </div>
+                )}
     
           </Link>
           </div>

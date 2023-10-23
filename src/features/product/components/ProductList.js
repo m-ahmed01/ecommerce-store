@@ -37,6 +37,8 @@ import { Link } from "react-router-dom";
 import Pagination from "../../common/Pagination";
 import { Bars } from "react-loader-spinner";
 
+
+
 const sortOptions = [
   { name: "Best Rating", sort: "rating", order: "desc", current: false },
   { name: "Price: Low to High", sort: "price", order: "asc", current: false },
@@ -140,8 +142,9 @@ function classNames(...classes) {
   };
 
   const handleSort = (e, option) => {
-  
+    console.log("Sorting option selected:", option);
     const sort = { _sort: option.sort, _order: option.order };
+     console.log("Sorting parameters:", sort);
     console.log({sort})
     setSort(sort); // here we created an object
  
@@ -651,6 +654,7 @@ function ProductGrid({ products, status }) {
                 </div>
                 <div>
                   <p className="text-sm font-medium text-gray-900">
+                  {/* ${discountedPrice(product)} */}
                     ${Math.round(
                       product.price * (1 - product.discountPercentage / 100)
                     )}
@@ -668,8 +672,8 @@ function ProductGrid({ products, status }) {
                 </div>
               )}
               {product.stock<=0 && (
-                <div className="text-red-700 mt-2">
-                  <p>Out of Stock</p>
+                <div className=" text-red-500 mt-2">
+                  <p><b>Out of Stock</b></p>
                 </div>
               )}
             </Link>
