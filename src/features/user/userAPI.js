@@ -20,7 +20,7 @@ export function fetchLoggedInUser(userId) {
 
 export function updateUser(update) { 
   return new Promise(async(resolve) => { // here we used promise
-    const response = await fetch(`http://localhost:8080/users/`+update.id ,{
+    const response = await fetch('http://localhost:8080/users/'+update.id ,{
       method: 'PATCH',
       body: JSON.stringify(update),
       headers:{'content-type':'application/json'}

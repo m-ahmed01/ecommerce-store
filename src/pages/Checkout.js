@@ -21,6 +21,7 @@ import { createOrderAsync, selectCurrentOrder } from '../features/order/orderSli
 import { selectUserInfo } from '../features/user/userSlice';
 import { useAlert } from 'react-alert';
 import Modal from '../features/common/Modal';
+import { discountedPrice } from '../app/constants';
 // import { Bars } from 'react-loader-spinner';
 
 
@@ -48,13 +49,18 @@ function Checkout () {
   // below is actual price
   // const totalAmount = items.reduce((amount,item)=>item.price*item.quantity+amount, 0 );
   // below is discounted price
+  // below one is working fine
+  // const totalAmount = items.reduce((amount, item) => {
+  //   return Math.round(item.price * (1 - item.discountPercentage / 100)) * item.quantity + amount;
+  // }, 0);
+  // adding in backend
   const totalAmount = items.reduce((amount, item) => {
-    return Math.round(item.price * (1 - item.discountPercentage / 100)) * item.quantity + amount;
+    discountedPrice(item.product* item.quantity + amount,0);
   }, 0);
 
   const totalItems = items.reduce((total,item)=>item.quantity+total, 0 );
   const handleQuantity = (e,item)=>{
-   dispatch( updateCartAsync({...item, quantity: +e.target.value}))
+   dispatch( updateCartAsync({ id:item.id, quantity: +e.target.value}))
   };
 
   const handleRemove = (e,id)=>{
@@ -444,8 +450,8 @@ function Checkout () {
     <li key={item.id} className="flex py-6">
       <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
         <img
-          src={item.thumbnail}
-          alt={item.title}
+          src={item.product.thumbnail}
+          alt={item.product.title}
           className="h-full w-full object-cover object-center"
         />
       </div>
@@ -454,17 +460,15 @@ function Checkout () {
         <div>
           <div className="flex justify-between text-base font-medium text-gray-900">
             <h3>
-              <a href={item.href}>{item.title}</a>
+              {/* item.href in first-one */}
+              <a href={item.product.id}>{item.product.title}</a>
             </h3>
             {/* <p className="ml-4">${item.price}</p> */}
             <p className="ml-4">
-            ${Math.round(
-item.price *
-(1 - item.discountPercentage / 100)
-)}
+            ${discountedPrice( item.product )}
             </p>
           </div>
-          <p className="mt-1 text-sm text-gray-500">{item.brand}</p>
+          <p className="mt-1 text-sm text-gray-500">{item.product.brand}</p>
         </div>
         <div className="flex flex-1 items-end justify-between text-sm">
           <div className="text-gray-500"> 

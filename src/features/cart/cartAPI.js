@@ -43,15 +43,29 @@ export function addToCart(item) {
   });
 }
 
-
+// working but give minor error in console
+// export function fetchItemsByUserId(userId) { 
+//   return new Promise(async(resolve) => { // here we used promise
+//     // TODO: we will not hardcode server URL here 
+//     const response = await fetch(`http://localhost:8080/cart?user=`+userId);
+//     const data = await response.json();
+//     resolve({data});
+//   }
+//   );
+// }
 export function fetchItemsByUserId(userId) { 
-  return new Promise(async(resolve) => { // here we used promise
-    // TODO: we will not hardcode server URL here 
-    const response = await fetch(`http://localhost:8080/cart?user=`+userId);
-    const data = await response.json();
-    resolve({data});
-  }
-  );
+  return new Promise(async(resolve, reject) => { 
+    try {
+      const response = await fetch(`http://localhost:8080/cart?user=${userId}`);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const data = await response.json();
+      resolve({data});
+    } catch (error) {
+      reject(error);
+    }
+  });
 }
 
 
