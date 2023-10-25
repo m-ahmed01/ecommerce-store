@@ -1,24 +1,37 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchLoggedInUserOrderAsync, selectUserInfo, selectUserOrders } from '../userSlice';
+import { fetchLoggedInUserOrderAsync, selectUserInfo, selectUserInfoStatus, selectUserOrders } from '../userSlice';
 import { Link } from 'react-router-dom';
 import { discountedPrice } from '../../../app/constants';
+import { Bars } from 'react-loader-spinner';
 
 
 export default function UserOrders() {
 
-    const userInfo = useSelector(selectUserInfo);
+    // const userInfo = useSelector(selectUserInfo);
     const orders = useSelector(selectUserOrders);
+    const dispatch = useDispatch();
+    const status = useSelector(selectUserInfoStatus);
 
-  const dispatch = useDispatch();
   useEffect(()=>{
-    dispatch(fetchLoggedInUserOrderAsync(userInfo.id))
-  },[dispatch, userInfo])
+    dispatch(fetchLoggedInUserOrderAsync())
+  },[dispatch])
 
   return (
     <div>
         <h1 className="mx-auto max-w-8xl mt-1 sm:px-6 lg:px-8 border-t border-gray-200  px-4 py-6 sm:px-6 text-4xl my-5 font-bold tracking-tight mb-2 text-gray-900">My Total Orders</h1>
-      {orders.map((order)=>(
+        {status === 'loading' ? (
+  <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+    <Bars
+      height="80"
+      width="80"
+      color="#4fa94d"
+      ariaLabel="bars-loading"
+    />
+  </div>
+) : null}
+
+      {orders && orders.map((order)=>(
       <div key={order.id}>
         <div>
           <div className="mx-auto mt-8 bg-white max-w-7xl px-4 py-3 sm:px-6 lg:px-8">
@@ -113,6 +126,7 @@ export default function UserOrders() {
 
       </div>
     ))}
+
     </div>
   );
 }

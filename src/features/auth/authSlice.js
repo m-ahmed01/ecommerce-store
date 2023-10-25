@@ -4,7 +4,7 @@ import { checkUser, createUser, signOut } from './authAPI';
 
 
 const initialState = {
-  loggedInUser: null, 
+  loggedInUserToken: null, 
   status: 'idle',
   error: null
 };
@@ -83,14 +83,14 @@ export const authSlice = createSlice({
       })
       .addCase(createUserAsync.fulfilled, (state, action) => {
         state.status = 'idle';
-        state.loggedInUser = action.payload;
+        state.loggedInUserToken = action.payload;
       })
       .addCase(checkUserAsync.pending, (state) => {
         state.status = 'loading';
       })
       .addCase(checkUserAsync.fulfilled, (state, action) => {
         state.status = 'idle';
-        state.loggedInUser = action.payload;
+        state.loggedInUserToken = action.payload;
       })
       .addCase(checkUserAsync.rejected, (state, action) => {
         state.status = 'idle';
@@ -101,14 +101,14 @@ export const authSlice = createSlice({
       // })
       // .addCase(updateUserAsync.fulfilled, (state, action) => {
       //   state.status = 'idle';
-      //   state.loggedInUser = action.payload;
+      //   state.loggedInUserToken = action.payload;
       // })
       .addCase(signOutAsync.pending, (state) => {
         state.status = 'loading';
       })
       .addCase(signOutAsync.fulfilled, (state, action) => {
         state.status = 'idle';
-        state.loggedInUser = null;
+        state.loggedInUserToken = null;
       });
   },
 });
@@ -118,7 +118,7 @@ export const { increment } = authSlice.actions;
 
 export const selectCount = (state) => state.counter.value;
 
-export const selectLoggedInUser = (state) =>state.auth.loggedInUser;
+export const selectLoggedInUser = (state) =>state.auth.loggedInUserToken;  // old:selectloggedInUser
 export const selectError = (state) =>state.auth.error;
 
 // export default counterSlice.reducer;

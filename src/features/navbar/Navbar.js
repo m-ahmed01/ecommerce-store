@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { selectItems } from '../cart/cartSlice';
 import { selectLoggedInUser } from '../auth/authSlice';
+import { selectUserInfo } from '../user/userSlice';
 
 // this section got removed
 const user1 = {
@@ -42,7 +43,7 @@ function classNames(...classes) {
 // ffc to declare functional component
 function NavBar ({children}) {   // inserted children as prop
   const items = useSelector(selectItems);
-  const user = useSelector(selectLoggedInUser);
+  const userInfo = useSelector(selectUserInfo);
 
     return ( 
         <>
@@ -65,7 +66,7 @@ function NavBar ({children}) {   // inserted children as prop
                       </div>
                       <div className="hidden md:block">
                         <div className="ml-10 flex items-baseline space-x-4">
-                          {user && navigation.map((item) => item[user.role] ? ( <Link
+                          {userInfo && navigation.map((item) => item[userInfo.role] ? ( <Link
                               key={item.name}
                               to={item.link}
                               className={classNames(

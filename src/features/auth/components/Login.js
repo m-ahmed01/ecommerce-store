@@ -14,11 +14,11 @@ import { Link, Navigate } from 'react-router-dom';
 
 export default function Login() {
   // const count = useSelector(selectCount);
+  const dispatch = useDispatch();
+  const error = useSelector(selectError);
   const user = useSelector(selectLoggedInUser);
   const count = useSelector(selectAuth);
 
-  const dispatch = useDispatch();
-  const error = useSelector(selectError);
   const {
     register,
     handleSubmit,
@@ -99,7 +99,7 @@ export default function Login() {
               />
                        {errors.password && <p className='text-red-600'>{errors.password.message}</p> }
             </div>
-            {error && <p className='text-red-600'>{error.message}</p> }   
+            {error && <p className='text-red-600'>{error || error.message}</p> }   
           </div>
 
           <div>
