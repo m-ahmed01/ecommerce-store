@@ -7,7 +7,7 @@ import { useForm } from "react-hook-form";
 //   selectCount,
   
 // } from '../authSlice';
-import { checkUserAsync, selectError } from '../authSlice';  // new
+import { loginUserAsync, selectError } from '../authSlice';  // new
 import { Link, Navigate } from 'react-router-dom';
 
 
@@ -41,7 +41,7 @@ export default function ForgotPassword() {
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
         {/* <form noValidate  onSubmit={handleSubmit((data)=>{  // noValidate is the HTML's validator
           dispatch();
-            checkUserAsync({name: data.name,email: data.email, password: data.password})
+            loginUserAsync({name: data.name,email: data.email, password: data.password})
           console.log(data);
         })}
         className="space-y-6"

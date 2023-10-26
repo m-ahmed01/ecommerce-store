@@ -26,7 +26,7 @@ export function createUser(userData) {
 }
 
 
-export function checkUser(loginInfo) { 
+export function loginUser(loginInfo) { 
   return new Promise(async(resolve, reject) => { // here we used promise
     // const email = loginInfo.email;
     // const password = loginInfo.password;
@@ -50,6 +50,31 @@ export function checkUser(loginInfo) {
     }
 
     // ToDo: On server it will return some information (not passsword)
+  }
+  );
+}
+
+
+export function checkAuth() { 
+  return new Promise(async(resolve, reject) => { // here we used promise
+    // const email = loginInfo.email;
+    // const password = loginInfo.password;
+    try {
+      const response = await fetch('http://localhost:8080/auth/check');
+      if(response.ok){
+
+        const data = await response.json();
+        resolve({data})
+      }else{
+        const error = await response.text();
+        reject(error)
+      }
+    
+    }catch(error){
+      reject(error);
+    }
+
+    // ToDo: On server it will return some information (not password)
   }
   );
 }

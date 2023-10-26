@@ -12,7 +12,7 @@ import { Link, Navigate } from 'react-router-dom';
 
 export default function Signup() {
   // const count = useSelector(selectCount);  
-  const count = useSelector(selectAuth);
+  // const count = useSelector(selectAuth);
   const user = useSelector(selectLoggedInUser);
   const dispatch = useDispatch();
   const {

@@ -7,7 +7,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 //   selectCount,
   
 // } from '../authSlice';
-import { checkUserAsync, selectAuth, selectError, selectLoggedInUser } from '../authSlice';  // new
+import { loginUserAsync, selectAuth, selectError, selectLoggedInUser } from '../authSlice';  // new
 import { Link, Navigate } from 'react-router-dom';
 
 
@@ -17,7 +17,7 @@ export default function Login() {
   const dispatch = useDispatch();
   const error = useSelector(selectError);
   const user = useSelector(selectLoggedInUser);
-  const count = useSelector(selectAuth);
+  // const count = useSelector(selectAuth);
 
   const {
     register,
@@ -45,7 +45,7 @@ export default function Login() {
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
         {/* <form noValidate  onSubmit={handleSubmit((data)=>{  // noValidate is the HTML's validator
           dispatch();
-            checkUserAsync({name: data.name,email: data.email, password: data.password})
+            loginUserAsync({name: data.name,email: data.email, password: data.password})
           console.log(data);
         })}
         className="space-y-6"
@@ -54,7 +54,7 @@ export default function Login() {
 <form
   noValidate
   onSubmit={handleSubmit((data) => {
-    dispatch(checkUserAsync({ name: data.name, email: data.email, password: data.password }));
+    dispatch(loginUserAsync({  email: data.email, password: data.password })); // name: data.name,
     // console.log(data);
   })}
   className="space-y-6"

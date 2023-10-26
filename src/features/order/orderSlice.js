@@ -6,7 +6,7 @@ const initialState = {
   orders: [],
   status: 'idle',
   currentOrder: null,
-  totalOrders:0
+  totalOrders:0,
 };
 // we may need more info of current order like date, id
 
