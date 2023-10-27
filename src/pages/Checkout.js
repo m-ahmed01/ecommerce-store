@@ -108,7 +108,8 @@ function Checkout () {
     return ( 
       <>
       {!items.length && <Navigate to='/' replace={true}></Navigate>}
-      {currentOrder && <Navigate to={`/order-success/${currentOrder.id}`} replace={true}></Navigate>}
+      {currentOrder && currentOrder.paymentMethod==='cash' && (<Navigate to={`/order-success/${currentOrder.id}`} replace={true}></Navigate>)}
+      {currentOrder && currentOrder.paymentMethod==='card' && (<Navigate to={`/stripe-checkout/`} replace={true}></Navigate>)}
 
       {/* {status === 'loading' && (
         <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex items-center justify-center">

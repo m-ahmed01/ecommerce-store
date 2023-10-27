@@ -41,6 +41,7 @@ import AdminOrdersPage from './pages/AdminOrdersPage';
 // react alerts
 import { positions, Provider } from "react-alert";
 import AlertTemplate from "react-alert-template-basic";
+import StripeCheckout from './pages/StripeCheckout';
 // react alerts
 const options = {
   timeout: 4000,
@@ -51,75 +52,80 @@ const options = {
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Protected> <Home></Home></Protected> ,
+    element: (<Protected> <Home></Home></Protected> ),
   },
   {
     path: "/admin",
-    element: <ProtectedAdmin> <AdminHome></AdminHome></ProtectedAdmin> ,
+    element: (<ProtectedAdmin> <AdminHome></AdminHome></ProtectedAdmin> ),
   },
   {
     path: "/admin/product-detail/:id",
-    element: <ProtectedAdmin><AdminProductDetailPage></AdminProductDetailPage> </ProtectedAdmin>,
+    element: (<ProtectedAdmin><AdminProductDetailPage></AdminProductDetailPage> </ProtectedAdmin>),
   },
   {
     path: "/admin/product-form",
-    element: <ProtectedAdmin><AdminProductFormPage></AdminProductFormPage> </ProtectedAdmin>,
+    element: (<ProtectedAdmin><AdminProductFormPage></AdminProductFormPage> </ProtectedAdmin>),
   },
   {
     path: "/admin/orders",
-    element: <ProtectedAdmin><AdminOrdersPage></AdminOrdersPage> </ProtectedAdmin>,
+    element: (<ProtectedAdmin><AdminOrdersPage></AdminOrdersPage> </ProtectedAdmin>),
   },
   {
     path: "/admin/product-form/edit/:id",
-    element: <ProtectedAdmin><AdminProductFormPage></AdminProductFormPage> </ProtectedAdmin>,
+    element: (<ProtectedAdmin><AdminProductFormPage></AdminProductFormPage> </ProtectedAdmin>),
   },
   {
     path: "/login",
-    element: <LoginPage></LoginPage>,
+    element: (<LoginPage></LoginPage>),
   },
   {
     path: "/signup",
-    element: <SignupPage></SignupPage>,
+    element: (<SignupPage></SignupPage>),
   },
   {
     path: "/cart",
-    element: <Protected> <CartPage></CartPage> </Protected>,
+    element: (<Protected> <CartPage></CartPage> </Protected>),
   },
   {
     path: "/checkout",
-    element: <Protected><NavBar> <Checkout></Checkout> </NavBar> </Protected> ,
+    element: (<Protected><NavBar> <Checkout></Checkout> </NavBar> </Protected> ),
   },
   {
     path: "/product-detail/:id",
-    element: <ProductDetailPage></ProductDetailPage>,
+    element: (<ProductDetailPage></ProductDetailPage>),
   },
   {
     path: "/order-success/:id",
-    element: <Protected> <NavBar> <OrderSuccessPage> </OrderSuccessPage> </NavBar> </Protected>,
+    element: (<Protected> <NavBar> <OrderSuccessPage> </OrderSuccessPage> </NavBar> </Protected>),
   },
   {
     path: "/orders",
-    element: <Protected> <UserOrdersPage></UserOrdersPage> </Protected>,
+    element: (<Protected> <UserOrdersPage></UserOrdersPage> </Protected>),
     // we will add page later, right now using component directly
   },
   {
     path: "/profile",
-    element: <Protected> <UserProfilePage></UserProfilePage> </Protected>,
+    element: (<Protected> <UserProfilePage></UserProfilePage> </Protected>),
 
   },
   {
     path: "/logout",
-    element: <Logout></Logout>,
+    element: (<Logout></Logout>),
 
   },
   {
     path: "/forgot-password",
-    element: <ForgotPasswordPage></ForgotPasswordPage>,
+    element: (<ForgotPasswordPage></ForgotPasswordPage> ),
+
+  },
+  {
+    path: "/stripe-checkout/",
+    element: ( <Protected> <StripeCheckout></StripeCheckout>  </Protected>),
 
   },
   {
     path: "*",   // wild card
-    element: <NavBar><PageNotFound> </PageNotFound> </NavBar>,
+    element: (<NavBar><PageNotFound> </PageNotFound> </NavBar>),
   },
 ]);
 
